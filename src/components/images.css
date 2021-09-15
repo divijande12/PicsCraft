@@ -1,0 +1,113 @@
+.root {
+  margin: 0px;
+  height: auto;
+  padding: 0px;
+  width: auto;
+}
+.navbar-custom {
+  margin: 0px;
+  padding: 00px;
+  position: fixed;
+  width: 100%;
+}
+.container-nav {
+  background-color: #7f7979;
+  height: 8vh;
+  margin: 0px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.navbar-heading {
+  color: #323031;
+  margin: 5px auto;
+  font-size: 28px;
+  font-family: "Playball", cursive;
+  font-weight: bold;
+}
+.logo-style {
+  height: 43px;
+  width: 43px;
+  margin: 6px;
+}
+.content-container {
+  height: 130vh !important;
+  min-height: 90vh;
+  padding-top: 10vh !important;
+  margin: 0px;
+  padding: 0px;
+  background-image: linear-gradient(120deg, #323031, #3d3b3c);
+}
+.card {
+  width: 18rem;
+  background-color: #7f7979;
+  margin: 18px;
+  padding: 0px;
+}
+.card-img-top {
+  margin: 0px;
+  padding: 0px;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchInput {
+  margin: 5px;
+}
+.search {
+  border: none;
+}
+.grid-parent {
+  width: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+}
+.image {
+  margin-top: 20px;
+  border-radius: 5px 0px;
+  transition: width 2s, height 2s, transform 2s;
+}
+.image:hover {
+  width: 300px;
+  height: 300px;
+  transform: rotate(0deg);
+}
+
+@media only screen and (max-width: 768px) {
+  .grid-parent {
+    width: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 8px;
+  }
+  .content-container {
+    height: 200vh !important;
+    min-height: 170vh;
+    padding-top: 10vh !important;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    background-image: linear-gradient(120deg, #323031, #3d3b3c);
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .grid-parent {
+    width: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+  }
+  .content-container {
+    height: 340vh !important;
+    min-height: 250vh;
+    padding-top: 10vh !important;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    background-image: linear-gradient(120deg, #323031, #3d3b3c);
+  }
+}
