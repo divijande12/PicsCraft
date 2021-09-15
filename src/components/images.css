@@ -31,12 +31,16 @@
   margin: 6px;
 }
 .content-container {
-  height: 130vh !important;
-  min-height: 90vh;
+  min-height: 130vh !important;
+  max-height: 200vh;
   padding-top: 10vh !important;
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(120deg, #323031, #3d3b3c);
+}
+.container {
+  min-width: 100%;
+  max-width: 150vw;
 }
 .card {
   width: 18rem;
@@ -68,7 +72,7 @@
 .image {
   margin-top: 20px;
   border-radius: 5px 0px;
-  transition: width 2s, height 2s, transform 2s;
+  transition: width 1s, height 1s, transform 1s;
 }
 .image:hover {
   width: 300px;
@@ -84,13 +88,22 @@
     column-gap: 8px;
   }
   .content-container {
-    height: 200vh !important;
-    min-height: 170vh;
+    min-height: 200vh !important;
+    max-height: 170vh;
     padding-top: 10vh !important;
     margin: 0px;
     padding: 0px;
     width: auto;
     background-image: linear-gradient(120deg, #323031, #3d3b3c);
+  }
+  .image {
+    margin-top: 20px;
+    border-radius: 5px 0px;
+  }
+  .image:hover {
+    width: 180px;
+    height: 180px;
+    transform: none;
   }
 }
 
@@ -102,12 +115,26 @@
     column-gap: 5px;
   }
   .content-container {
-    height: 340vh !important;
-    min-height: 250vh;
+    min-height: 340vh !important;
+    max-height: 250vh;
     padding-top: 10vh !important;
     margin: 0px;
     padding: 0px;
-    width: auto;
     background-image: linear-gradient(120deg, #323031, #3d3b3c);
+    min-width: auto;
+    max-width: auto;
+  }
+  .container {
+    min-width: auto;
+    max-width: auto;
+  }
+  .image {
+    margin-top: 20px;
+    border-radius: 5px 0px;
+  }
+  .image:hover {
+    width: 180px;
+    height: 180px;
+    transform: none;
   }
 }
