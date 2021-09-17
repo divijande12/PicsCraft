@@ -1,26 +1,50 @@
-import axios from "axios";
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import "./images.css";
+import { get_image } from "../actions/Get_image";
+import { connect } from "react-redux";
+import Pagination from "./pagination/pagination";
+import axios from "axios";
 
-export default function Images() {
-  const apiKey = "636e1481b4f3c446d26b8eb6ebfe7127";
-  const query = "mountains,trees,animals,cars,nature";
-  const [imageData, setImageData] = useState([]);
-  const [search, setSearch] = useState("");
+function Images(props) {
+  const [search, setSearch] = useState([]);
+  const [Data, setData] = useState(true);
+  const [text, setText] = useState("");
+  console.log("divij props -- ", props);
   useEffect(() => {
+    props.get_image();
+  }, []);
+
+  const submit = (e) => {
+    e.preventDefault();
+    const apiKey = "636e1481b4f3c446d26b8eb6ebfe7127";
     axios
       .get(
-        `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=25&format=json&nojsoncallback=1&extras=url_s`
+        `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${text}&per_page=25&format=json&nojsoncallback=1&extras=url_s,tags`
       )
       .then((res) => {
-        setImageData(res.data.photos.photo);
-        console.log(res);
-        // res.data.photos.photo.map((item) => console.log(item.url_s));
-      })
-      .catch((err) => {
-        console.log(err);
+        console.log("inside then", res);
+        const searchText = res.data.photos.photo.filter((item) => {
+          console.log("value", item);
+          return item.tags.toLowerCase().includes(text.toLowerCase());
+        });
+        setSearch(searchText);
+        console.log("text", text);
+
+        if (searchText.length === 0) {
+          setData(false);
+        } else {
+          setData(true);
+        }
       });
-  }, []);
+  };
+  const searchImage = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    if (name === "search") {
+      setText(value);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -37,11 +61,14 @@ export default function Images() {
                   style={{ color: "black", fontWeight: "500" }}
                   className="btn btn-outline-secondary"
                   type="button"
+                  onClick={submit}
                   id="button-addon1">
                   Search
                 </button>
                 <input
                   type="text"
+                  name="search"
+                  onChange={searchImage}
                   className="form-control"
                   placeholder=""
                   aria-label="Example text with button addon"
@@ -55,18 +82,35 @@ export default function Images() {
       <div className="content-container">
         <div className="container">
           <div className="grid-parent">
-            {imageData.map((item) => (
-              <img
-                className="image"
-                src={item.url_s}
-                height="120"
-                width="170"
-                alt=""
-              />
-            ))}
+            {search.length !== 0
+              ? search.map((item) => (
+                  <img
+                    className="image"
+                    src={item.url_s}
+                    height="120"
+                    width="170"
+                    alt=""
+                  />
+                ))
+              : props.photos.photos !== 0 &&
+                props.photos.photos.map((item) => (
+                  <img
+                    className="image"
+                    src={item.url_s}
+                    height="120"
+                    width="170"
+                    alt=""
+                  />
+                ))}
           </div>
         </div>
+        <Pagination />
       </div>
     </React.Fragment>
   );
 }
+
+const MapStateToProps = (state) => ({
+  photos: state.photos,
+});
+export default connect(MapStateToProps, { get_image })(Images);
