@@ -14,7 +14,7 @@ const TAGS = [
   "Animals",
 ];
 
-export class Images2 extends Component {
+export class Images extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -217,4 +217,4 @@ export class Images2 extends Component {
   }
 }
 
-export default Images2;
+export default Images;
