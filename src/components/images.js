@@ -168,7 +168,7 @@ export class Images2 extends Component {
                   className="btn btn-outline-danger tagBtn clear-button"
                   id="clear"
                   onClick={this.selectTag}>
-                  Clear tags
+                  Clear Tags
                 </button>
               </div>
               <div className="grid-parent">
@@ -182,14 +182,16 @@ export class Images2 extends Component {
                       alt=""
                     />
                     <div className="middle">
-                      <button
-                        type="submit"
-                        className="text"
+                      <ion-icon
+                        name="arrow-down-circle"
+                        style={{
+                          fontSize: "45px",
+                          cursor: "pointer",
+                          color: "#E7770D",
+                        }}
                         onClick={() =>
                           this.onDownloadImage(item.url_s, item.id)
-                        }>
-                        <ion-icon name="arrow-down-circle"></ion-icon>
-                      </button>
+                        }></ion-icon>
                     </div>
                   </div>
                 ))}
