@@ -86,11 +86,17 @@ export class Images extends Component {
     e.preventDefault();
     const { id } = e.target;
     this.setState(
-      { tags: id === "clear" ? "" : id, pageNumber: 1, searchText: "" },
+      {
+        tags: id === "clear" ? "" : id,
+        pageNumber: 1,
+        searchText: "",
+      },
       () => {
         if (this.state.tags !== "") {
           this.fetchData("filter", "tags");
         } else {
+          this.setState({ searchText: "" });
+
           this.fetchData();
         }
       }
@@ -133,6 +139,7 @@ export class Images extends Component {
                   <div className="input-group search">
                     <input
                       type="text"
+                      value={this.state.searchText}
                       onChange={this.onSearchTextChange}
                       name="search"
                       className="form-control"
@@ -199,15 +206,17 @@ export class Images extends Component {
             </div>
             <div className="pagination-container">
               <div className="change-page-container">
-                <ion-icon
-                  className="arrow-icon"
-                  onClick={(e) => this.onPageChange(-1)}
-                  name="chevron-back-outline"></ion-icon>
+                <i
+                  className={
+                    this.state.pageNumber === 1
+                      ? "bi bi-chevron-left disabled"
+                      : "bi bi-chevron-left"
+                  }
+                  onClick={(e) => this.onPageChange(-1)}></i>
                 <span style={{ color: "white" }}>{this.state.pageNumber}</span>
-                <ion-icon
-                  className="arrow-icon"
-                  onClick={(e) => this.onPageChange(1)}
-                  name="chevron-forward-outline"></ion-icon>
+                <i
+                  className="bi bi-chevron-right"
+                  onClick={(e) => this.onPageChange(1)}></i>
               </div>
             </div>
           </div>
